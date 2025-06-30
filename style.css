@@ -1,0 +1,896 @@
+/* Global Resets and Base Styles */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+    background-color: #E0E8F0; /* Light grayish blue */
+    color: #2c3e50; /* Darker base text color for better contrast */
+    line-height: 1.6;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    padding: 40px 20px;
+    overflow-x: hidden; /* Prevent horizontal scrollbars */
+    
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+        padding: 20px 10px;
+        align-items: center; /* Center vertically on mobile */
+    }
+    
+    @media (max-width: 480px) {
+        padding: 0; /* Full screen on very small devices */
+    }
+}
+
+#tsparticles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* Ensure it's behind all other content */
+}
+
+/* Main Container */
+.container {
+    display: flex;
+    width: 100%;
+    max-width: 1300px;
+    background-color: #FFFFFF; /* Solid white to sit on top of body's network bg */
+    box-shadow: 0 10px 35px rgba(0, 40, 80, 0.12); /* More pronounced shadow with blue tint */
+    border-radius: 12px;
+    overflow: hidden;
+    z-index: 1; /* Ensure it's above the body::before pseudo-element */
+    flex-direction: row; /* Default for desktop */
+    
+    /* Responsive container for tablets and mobile */
+    @media (max-width: 1024px) {
+        flex-direction: column;
+        max-width: 90%;
+        box-sizing: border-box;
+        margin: 0 auto;
+    }
+    
+    /* Extra adjustments for tablets */
+    @media (max-width: 768px) {
+        max-width: 95%;
+        margin: 10px auto;
+        box-sizing: border-box;
+    }
+    
+    /* Extra adjustments for very small screens */
+    @media (max-width: 480px) {
+        max-width: 100%;
+        border-radius: 0;
+        margin: 0;
+        box-shadow: none;
+    }
+}
+
+/* Info Section (Left Panel) - Enhanced for NICTM 2025 Welcome */
+.info-section {
+    flex: 1;
+    padding: 0 0 40px 0; /* Remove top padding to allow banner to go edge-to-edge */
+    background-color: rgba(245, 248, 252, 0.9); /* Very light, slightly transparent overlay */
+    border-right: 1px solid #C5D9E8; /* Lighter border */
+    color: #1A202C; /* Darker text for better readability on light bg */
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden; /* Ensures animations don't cause unexpected scrollbars */
+    /* border-radius: 12px 0 0 12px; /* If container is split, this rounds left side */
+    
+    /* Responsive adjustments */
+    @media (max-width: 1024px) {
+        border-right: none;
+        border-bottom: 1px solid #C5D9E8;
+        padding-bottom: 25px;
+    }
+    
+    @media (max-width: 768px) {
+        padding-bottom: 20px;
+    }
+    
+    @media (max-width: 480px) {
+        padding-bottom: 15px;
+    }
+}
+
+/* Header logo area within info-section */
+.info-section .header-logo {
+    text-align: center;
+    margin-bottom: 25px;
+    opacity: 0;
+    animation: fadeIn 0.8s 0.2s ease-out forwards;
+    width: 100%;
+    padding: 0;
+    position: relative;
+    overflow: hidden;
+    display: block;
+    min-height: 200px;
+}
+
+/* Banner styles for digital_bayanihan */
+.info-section .header-logo img,
+.banner-image {
+    width: 100%; /* Full width */
+    height: auto; /* Maintain aspect ratio */
+    margin: 0;
+    display: block; /* Ensure block display */
+    object-fit: contain; /* Show full image */
+    min-height: 200px; /* Increased minimum height on all devices */
+    max-height: 350px; /* Increased maximum height */
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1); /* Subtle separator */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+/* Simple responsive adjustments for banner image */
+@media (max-width: 768px) {
+    .info-section .header-logo {
+        margin-bottom: 15px;
+    }
+    
+    .banner-image,
+    .info-section .header-logo img {
+        max-height: 250px;
+        width: 100%;
+        min-height: 220px;
+    }
+}
+
+@media (max-width: 480px) {
+    .banner-image,
+    .info-section .header-logo img {
+        max-height: 220px;
+        min-height: 200px;
+        width: 100%;
+    }
+}
+
+/* Signature pad styles */
+#signature_pad_canvas {
+    width: 100%;
+    height: 220px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: #fff;
+}
+
+@media (max-width: 768px) {
+    #signature_pad_canvas {
+        height: 220px; /* Keep height consistent on tablets */
+    }
+}
+
+@media (max-width: 480px) {
+    #signature_pad_canvas {
+        height: 200px; /* Slightly smaller on mobile */
+    }
+}
+
+.info-section .header-logo .site-branding { /* For the "DICT - National ICT Month 2025" text */
+    font-size: 1.6em;
+    font-weight: 700;
+    color: #003B73; /* Deeper blue, from DICT branding */
+    vertical-align: middle;
+}
+
+/* Main Title: "Walang Iwanan sa Digital Bayanihan" */
+.info-section .main-title {
+    text-align: center;
+    color: #004080; /* Strong, deep blue from theme */
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-size: 2.4em;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    opacity: 0;
+    animation: fadeInSlideUp 0.8s 0.4s ease-out forwards;
+}
+
+/* Sub Title: "Welcome to the Guest Registration!" */
+.info-section .sub-title {
+    text-align: center;
+    color: #0056b3; /* Slightly lighter blue than main title */
+    margin-bottom: 30px;
+    font-size: 1.6em;
+    font-weight: 500;
+    opacity: 0;
+    animation: fadeInSlideUp 0.8s 0.6s ease-out forwards;
+}
+
+/* General paragraph styling within the info section for welcome text */
+.info-section .event-details,
+.info-section .event-mission,
+.info-section .invitation-note {
+    font-size: 1.05rem;
+    line-height: 1.75;
+    margin-bottom: 20px;
+    text-align: justify;
+    color: #334E68; /* Darker, slightly desaturated blue-gray */
+    opacity: 0;
+    animation: fadeIn 1s ease-out forwards;
+}
+
+/* Fix text spacing on mobile devices */
+@media (max-width: 768px) {
+    .info-section .event-details,
+    .info-section .event-mission,
+    .info-section .invitation-note {
+        text-align: left;
+        word-spacing: normal;
+        font-size: 1rem;
+    }
+    
+    .content-wrapper {
+        padding: 0 20px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .info-section .event-details,
+    .info-section .event-mission,
+    .info-section .invitation-note {
+        text-align: left;
+        word-spacing: normal;
+        margin-bottom: 15px;
+        line-height: 1.5;
+        font-size: 0.95rem;
+    }
+    
+    .content-wrapper {
+        padding: 0 12px !important;
+    }
+}
+
+/* Staggered animation delays for paragraphs */
+.info-section .event-details { animation-delay: 0.8s; }
+.info-section .event-mission { animation-delay: 1.0s; }
+.info-section .invitation-note { animation-delay: 1.2s; }
+
+
+.info-section p strong, .info-section strong { /* Styling for <strong> tags within paragraphs */
+    color: #004A99; /* Consistent strong blue */
+    font-weight: 600;
+}
+
+/* Call to Action Text */
+.info-section .call-to-action {
+    font-weight: 600;
+    text-align: center;
+    margin-top: 30px;
+    font-size: 1.15em;
+    color: #0056b3;
+    opacity: 0;
+    animation: fadeIn 1s 1.4s ease-out forwards;
+    padding: 15px 20px;
+    background-color: rgba(210, 228, 247, 0.8);
+    border-radius: 8px;
+    border: 1px solid rgba(0, 75, 153, 0.3);
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.info-section .call-to-action:hover {
+    background-color: rgba(180, 208, 237, 0.95);
+    transform: translateY(-2px);
+    box-shadow: 0 3px 7px rgba(0, 75, 153, 0.15);
+}
+
+/* If .logos class is still present and used for something else, style it here */
+.info-section .logos {
+    text-align: center;
+    margin-bottom: 20px;
+    /* Add other styles if this class is repurposed */
+}
+
+/* Registration Section (Right Panel) */
+.registration-section {
+    flex: 1.6;
+    padding: 40px;
+    background-color: #ffffff;
+    
+    /* Responsive adjustments */
+    @media (max-width: 1024px) {
+        flex: 1;
+        padding: 30px;
+    }
+    
+    @media (max-width: 768px) {
+        padding: 25px 20px;
+    }
+    
+    @media (max-width: 480px) {
+        padding: 20px 15px;
+    }
+}
+
+.registration-section h1 {
+    font-size: 2.2rem;
+    font-weight: 600;
+    color: #003B73; /* Deep blue from theme */
+    margin-top: 0;
+    margin-bottom: 35px;
+    text-align: center;
+}
+
+/* Form Styling */
+.form-group {
+    margin-bottom: 22px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500; /* Slightly less bold for a cleaner look */
+    color: #34495e; /* Dark grayish blue for labels */
+    font-size: 0.9rem;
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="tel"],
+.form-group select {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid #ccd9e5;
+    border-radius: 6px; /* Softer rounding */
+    font-size: 1rem;
+    color: #333;
+    background-color: #fdfdff; /* Very light input background */
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    
+    /* Make form fields more touch-friendly on mobile */
+    @media (max-width: 768px) {
+        font-size: 16px; /* Prevents iOS zoom on focus */
+        padding: 14px 16px; /* Slightly larger touch target */
+    }
+    
+    @media (max-width: 480px) {
+        padding: 15px 16px; /* Even larger touch target for very small screens */
+    }
+}
+
+.form-group input::placeholder,
+.form-group select option[value=""] {
+    color: #95a5a6;
+    opacity: 1; /* Ensure placeholder is visible */
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    border-color: #0056b3; /* Theme blue for focus */
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(0, 86, 179, 0.25); /* Focus glow with theme blue */
+    background-color: #fff;
+    animation: border-dance 2s infinite ease-in-out; /* Subtle animation for focus state */
+}
+
+/* Signature Pad */
+.signature-container {
+    width: 100%;
+    max-width: 420px; /* Adjusted max-width */
+    margin-bottom: 10px;
+    
+    @media (max-width: 768px) {
+        max-width: 100%; /* Full width on mobile */
+    }
+}
+
+#signature_pad_canvas {
+    border: 1px solid #ccd9e5; /* Match other input fields */
+    cursor: crosshair;
+    border-radius: 6px;    /* Match other input fields */
+    touch-action: none;
+    background-color: #fdfdff; /* Match other input fields */
+    width: 100%;
+    height: 220px; /* Increased height for more signature room */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05); /* Subtle shadow for depth */
+    
+    /* Adjust height for different screen sizes */
+    @media (max-width: 768px) {
+        height: 220px; /* Maintain height on tablets */
+    }
+    
+    @media (max-width: 480px) {
+        height: 200px; /* Slightly shorter on very small screens, but still spacious */
+        border-radius: 8px; /* Slightly more rounded on mobile */
+    }
+}
+
+/* Buttons */
+.buttons {
+    margin-top: 30px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px; /* Space between buttons on desktop */
+    
+    /* Adjust button layout on mobile */
+    @media (max-width: 768px) {
+        justify-content: space-between; /* Better spacing on mobile */
+        flex-wrap: wrap; /* Allow wrapping if needed */
+        gap: 10px; /* Space between wrapped buttons */
+    }
+    
+    @media (max-width: 480px) {
+        justify-content: center; /* Center buttons on very small screens */
+        flex-direction: column; /* Stack buttons on very small screens */
+        gap: 15px; /* More space between stacked buttons */
+    }
+}
+
+#toastContainer {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 10000; /* Ensure toasts are on top */
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.toast {
+    background-color: #333; /* Default dark background */
+    color: #fff;
+    padding: 15px 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    transform: translateX(100%);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    min-width: 280px;
+    max-width: 350px;
+    font-size: 0.95rem;
+    
+    /* Responsive adjustments for toasts */
+    @media (max-width: 768px) {
+        min-width: 250px;
+        max-width: 90%;
+        font-size: 0.9rem;
+    }
+    
+    @media (max-width: 480px) {
+        transform: translateY(100%); /* Slide up from bottom on mobile */
+        min-width: auto;
+        width: 90%;
+        padding: 12px 15px;
+    }
+}
+
+.toast.show {
+    opacity: 1;
+    transform: translateX(0);
+    
+    @media (max-width: 480px) {
+        transform: translateY(0); /* Reset for mobile slide-up */
+    }
+}
+
+.toast.toast-success {
+    background-color: #28a745; /* Green for success */
+    color: white;
+}
+
+.toast.toast-error {
+    background-color: #dc3545; /* Red for error */
+    color: white;
+}
+
+.toast.toast-info {
+    background-color: #17a2b8; /* Blue for info/loading */
+    color: white;
+}
+
+.buttons button {
+    padding: 14px 28px;
+    font-size: 1.05rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    min-width: 130px;
+    letter-spacing: 0.5px;
+    
+    /* Responsive adjustments for buttons */
+    @media (max-width: 768px) {
+        padding: 12px 20px;
+        min-width: 120px;
+    }
+    
+    @media (max-width: 480px) {
+        width: 100%; /* Full width buttons on small screens */
+        padding: 15px 20px; /* Larger touch target */
+        font-size: 1.1rem;
+    }
+}
+
+#clear_signature {
+    background-color: #7F9CB5; /* Muted blue-gray */
+    color: white;
+}
+
+#clear_signature:hover {
+    background-color: #6A85A0;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+button[type="submit"] {
+    background-color: #0056b3; /* Main theme blue */
+    color: white;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+button[type="submit"]:after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 5px;
+    height: 5px;
+    background: rgba(255, 255, 255, 0.5);
+    opacity: 0;
+    border-radius: 100%;
+    transform: scale(1, 1) translate(-50%);
+    transform-origin: 50% 50%;
+}
+
+button[type="submit"]:focus:not(:active)::after {
+    animation: ripple 1s ease-out;
+}
+
+@keyframes ripple {
+    0% {
+        transform: scale(0, 0);
+        opacity: 0.5;
+    }
+    20% {
+        transform: scale(25, 25);
+        opacity: 0.5;
+    }
+    100% {
+        opacity: 0;
+        transform: scale(40, 40);
+    }
+}
+
+button[type="submit"]:hover {
+    background-color: #004080; /* Darker shade of theme blue */
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 64, 128, 0.25);
+}
+
+.buttons button:active {
+    transform: translateY(1px);
+}
+
+/* Privacy Notice */
+.privacy-notice {
+    font-size: 0.85rem;
+    color: #6c757d;
+    margin-top: 30px;
+    text-align: center;
+}
+
+.privacy-notice a {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.privacy-notice a:hover {
+    text-decoration: underline;
+}
+
+/* Status Messages (for JS feedback) */
+#formStatus {
+    margin-top: 20px;
+    padding: 12px 15px;
+    border-radius: 6px;
+    text-align: center;
+    font-weight: 500;
+    font-size: 0.95rem;
+    display: none; /* Hidden by default */
+}
+
+#formStatus.success {
+    background-color: #e6f7ed; /* Lighter green */
+    color: #1d7f43;
+    border: 1px solid #b7e4c7;
+}
+
+#formStatus.error {
+    background-color: #fff0f1; /* Lighter red */
+    color: #c92a2a;
+    border: 1px solid #ffc9c9;
+}
+
+/* Modal Styling (ensure consistency) */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5); /* Slightly less dark backdrop */
+    backdrop-filter: blur(3px); /* Frosted glass effect */
+}
+
+.modal-content {
+    background-color: #ffffff;
+    margin: 8% auto;
+    padding: 30px;
+    border: none; /* Remove border, rely on shadow */
+    width: 90%;
+    max-width: 650px;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+    position: relative;
+    animation: fadeInModal 0.3s ease-out;
+    
+    /* Responsive adjustments for modals */
+    @media (max-width: 768px) {
+        padding: 25px;
+        margin: 15% auto;
+        width: 95%;
+    }
+    
+    @media (max-width: 480px) {
+        padding: 20px;
+        margin: 10% auto;
+        width: 95%;
+        border-radius: 8px;
+    }
+}
+
+@keyframes fadeInModal {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.close-button {
+    color: #888;
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 32px;
+    font-weight: bold;
+    line-height: 1;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: #333;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-content h2 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    color: #0052cc;
+    font-size: 1.6rem;
+    font-weight: 600;
+}
+
+.modal-body {
+    max-height: 65vh;
+    overflow-y: auto;
+    font-size: 0.95rem;
+    color: #454f5b;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 1024px) { /* Tablet and smaller */
+    .container {
+        flex-direction: column;
+        width: 95%;
+        max-width: 720px;
+    }
+    .info-section {
+        border-right: none;
+        border-bottom: 1px solid #e0e6ed;
+    }
+    .registration-section, .info-section {
+        padding: 30px;
+    }
+}
+
+@media (max-width: 768px) { /* Smaller tablets and large phones */
+    body {
+        padding: 20px 10px;
+    }
+    .registration-section h1 {
+        font-size: 1.8rem;
+        margin-bottom: 25px;
+    }
+    .info-section .header-logo {
+        font-size: 2em;
+    }
+    .buttons {
+        flex-direction: column;
+        gap: 10px;
+    }
+    .buttons button {
+        width: 100%;
+    }
+    .modal-content {
+        margin: 15% auto;
+        padding: 25px;
+        width: 90%;
+    }
+}
+
+@media (max-width: 480px) { /* Mobile phones */
+    .registration-section, .info-section {
+        padding: 20px;
+    }
+    .registration-section h1 {
+        font-size: 1.6rem;
+    }
+    .info-section .header-logo {
+        font-size: 1.7em;
+    }
+    .form-group input[type="text"],
+    .form-group input[type="email"],
+    .form-group input[type="tel"],
+    .form-group select {
+        padding: 10px 14px;
+        font-size: 0.95rem;
+    }
+    .buttons button {
+        padding: 12px 20px;
+        font-size: 0.95rem;
+    }
+    .modal-content h2 {
+        font-size: 1.4rem;
+    }
+    .modal-body {
+        font-size: 0.9rem;
+    }
+}
+
+/* Success Modal Styles */
+.modal {
+    display: none; /* Hidden by default, JS will change to display: flex */
+    position: fixed; /* Stay in place */
+    z-index: 1000; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed for modal content itself */
+    background-color: rgba(0,0,0,0.6); /* Slightly darker backdrop */
+    align-items: center; /* Vertical center */
+    justify-content: center; /* Horizontal center */
+}
+
+.modal-content {
+    background-color: #fff;
+    margin: auto; /* Good fallback, but flex handles centering */
+    padding: 30px 35px;
+    border: none; /* Remove border for a cleaner look with shadow */
+    width: 90%;
+    max-width: 480px; /* Optimal width for such modals */
+    border-radius: 12px; /* Softer, more modern radius */
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15); /* Enhanced shadow */
+    text-align: center;
+    position: relative; /* For absolute positioning of close button */
+    animation: fadeInModal 0.3s ease-out;
+}
+
+@keyframes fadeInModal {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.modal-content h2 {
+    color: #0056b3; /* Theme blue for success modal heading */
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-size: 1.8rem; /* Slightly larger heading */
+}
+
+.modal-content p {
+    font-size: 1.05rem; /* Adjusted for readability */
+    color: #454f5b; /* Softer text color */
+    margin-bottom: 12px;
+    line-height: 1.5;
+}
+
+.modal-content p.countdown-text {
+    margin-top: 20px;
+    margin-bottom: 0;
+    font-size: 1rem;
+}
+
+#countdownTimer {
+    font-weight: 700; /* Bolder */
+    font-size: 1.3rem;
+    color: #0056b3; /* Theme blue */
+}
+
+.close-button {
+    color: #95a5a6; /* Lighter close button */
+    font-size: 32px; /* Larger for easier clicking */
+    font-weight: normal; /* Not bold, more subtle */
+    position: absolute;
+    top: 12px;
+    right: 18px;
+    line-height: 1; /* Ensure it's centered if it wraps (unlikely) */
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: #2c3e50; /* Darker on hover */
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Class added to body when modal is open to prevent background scroll */
+.modal-open body {
+    overflow: hidden;
+}
+
+/* Add keyframe animations for content fade-in */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes fadeInSlideUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* New animations for more immersive experience */
+@keyframes subtle-float {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+    100% { transform: translateY(0); }
+}
+
+@keyframes pulse-glow {
+    0% { box-shadow: 0 0 0 0 rgba(0, 86, 179, 0.4); }
+    70% { box-shadow: 0 0 0 10px rgba(0, 86, 179, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(0, 86, 179, 0); }
+}
+
+@keyframes border-dance {
+    0% { border-color: rgba(0, 86, 179, 0.3); }
+    50% { border-color: rgba(0, 86, 179, 0.8); }
+    100% { border-color: rgba(0, 86, 179, 0.3); }
+}
+
+@keyframes subtleNetworkPulse {
+    0% {
+        background-position: 0 0, 0 25px, 25px -25px, -25px 0px;
+        opacity: 0.5;
+    }
+    25% {
+        opacity: 0.6;
+    }
+    50% {
+        background-position: 25px 25px, 25px 50px, 50px 0px, 0px 25px;
+        opacity: 0.7;
+    }
+    75% {
+        opacity: 0.6;
+    }
+    100% {
+        background-position: 0 0, 0 25px, 25px -25px, -25px 0px;
+        opacity: 0.5;
+    }
+}
+
